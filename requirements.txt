@@ -1,5 +1,7 @@
  pandas
  numpy
  seaborn
- -e .
  datetime
+ matplotlib
+ scikit-learn 
+ #-e .
