@@ -4,4 +4,5 @@
  datetime
  matplotlib
  scikit-learn 
+ dill
  #-e .

@@ -14,13 +14,14 @@ import pandas as pd
 import numpy as np
 from dataclasses import dataclass ## dataclass enables us to write python Class with __init__().
 
+from src.components.data_transformation import DataTransformation, DataTransformationConfig
 @dataclass ## we have to define this to intiate the class.
 
 ## Defining a class DataIngestionConfig where we define the path for the rawdata.csv, traindata.csv, testdata.csv
 class DataIngestionConfig:
-    train_data_path:str = os.path.join('artifact', "train_data.csv")
-    test_data_path:str = os.path.join('artifact', "test_data.csv")
-    raw_data_path:str = os.path.join('artifact', "raw_data.csv")
+    train_data_path: str = os.path.join('artifact', "train_data.csv")
+    test_data_path: str = os.path.join('artifact', "test_data.csv")
+    raw_data_path: str = os.path.join('artifact', "raw_data.csv")
 
 ## Now the DataIngestion components knows where to save the raw, train, test data.
 
@@ -45,8 +46,8 @@ class DataIngestion:
             train_set, test_set = train_test_split(df, test_size=0.3, random_state=42)
 
             ## Saving the train and test data in the artifacts folder.
-            train_set.to_csv(self.ingestion_config.train_data_path)
-            test_set.to_csv(self.ingestion_config.test_data_path)
+            train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
+            test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
 
             return(
                 self.ingestion_config.train_data_path,
@@ -58,8 +59,10 @@ class DataIngestion:
 
 if __name__ == "__main__":
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data, test_data = obj.initiate_data_ingestion()
 
+    data_transformation = DataTransformation()
+    train_arr, test_arr,_ = data_transformation.initiate_data_transformation(train_data, test_data)
             
 
 
