@@ -40,5 +40,5 @@
     ├── README.md
     └── .gitignore
 
-## Project link:
-    [link] (https://student-perfomance-prediction.onrender.com)
+## Project link: 
+[https://student-perfomance-prediction.onrender.com](https://student-perfomance-prediction.onrender.com)
