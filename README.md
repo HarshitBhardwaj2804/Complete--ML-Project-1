@@ -19,15 +19,14 @@
     |
     |── src/ 
     |   └── components/
-    |       └── data_ingestion.py
-    |       └── data_transformation.py
-    |       └── model_trainer.py
+    |       └── data_ingestion.py           # File responsible to full data from multiple sources
+    |       └── data_transformation.py      # Python file to do preprocessing task on the raw data.
+    |       └── model_trainer.py            # Python file to train and select best model.
     |   └── pipeline/
-    |       └── prediction_pipeline.py
+    |       └── prediction_pipeline.py      # python file takes the new data and preforms prediction.
     |       └── train_pipeline.py
-    |
-    |   └── exception.py
-    |   └── utils.py
+    |   └── exception.py                    # Python file to raise custom exceptions
+    |   └── utils.py                        
     |   └── logger.py
     |
     ├── templates/
@@ -35,7 +34,7 @@
     |   └── home.html
     |   └── result.html       
     │
-    ├── app.py
+    ├── app.py                              # Main flask file
     ├── setup.py
     ├── requirements.txt
     ├── README.md
