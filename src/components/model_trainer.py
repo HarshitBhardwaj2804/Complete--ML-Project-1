@@ -52,19 +52,57 @@ class ModelTrainer:
         
             models = {
                 "LinearRegression": LinearRegression(),
-                "Ridge": Ridge(),
-                "Lasso": Lasso(),
-                "SVR": SVR(),
-                "RandomForestRegressor": RandomForestRegressor(),
-                "GradientBoostingRegressor": GradientBoostingRegressor(),   
+                #"Ridge": Ridge(),
+                #"Lasso": Lasso(),
+                #"SVR": SVR(),
+                "RandomForest": RandomForestRegressor(),
+                "GradientBoosting": GradientBoostingRegressor(),   
                 "AdaBoostRegressor": AdaBoostRegressor(),
-                "DecisionTreeRegressor": DecisionTreeRegressor(),
-                "KNeighborsRegressor": KNeighborsRegressor(),
-                "CatBoostRegressor": CatBoostRegressor(),
+                "DecisionTree": DecisionTreeRegressor(),
+                #"KNeighborsRegressor": KNeighborsRegressor(),
+                "CatBoostingRegressor": CatBoostRegressor(),
                 "XGBRegressor": XGBRegressor(),
             }
 
-            model_report: dict = train_model(X_train, y_train, X_test, y_test, models) ## define in untils.py
+            params={
+                "DecisionTree": {
+                    'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                    # 'splitter':['best','random'],
+                    # 'max_features':['sqrt','log2'],
+                },
+                "RandomForest":{
+                    # 'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                 
+                    # 'max_features':['sqrt','log2',None],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "GradientBoosting":{
+                    # 'loss':['squared_error', 'huber', 'absolute_error', 'quantile'],
+                    'learning_rate':[.1,.01,.05,.001],
+                    'subsample':[0.6,0.7,0.75,0.8,0.85,0.9],
+                    # 'criterion':['squared_error', 'friedman_mse'],
+                    # 'max_features':['auto','sqrt','log2'],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "LinearRegression":{},
+                "XGBRegressor":{
+                    'learning_rate':[.1,.01,.05,.001],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "CatBoostingRegressor":{
+                    'depth': [6,8,10],
+                    'learning_rate': [0.01, 0.05, 0.1],
+                    'iterations': [30, 50, 100]
+                },
+                "AdaBoostRegressor":{
+                    'learning_rate':[.1,.01,0.5,.001],
+                    # 'loss':['linear','square','exponential'],
+                    'n_estimators': [8,16,32,64,128,256]
+                }
+                
+            }
+
+            model_report: dict = train_model(X_train, y_train, X_test, y_test, models, params) ## define in untils.py
 
             best_model_score = max(sorted(model_report.values()))
             best_model_name = list(model_report.keys())[
@@ -86,5 +124,5 @@ class ModelTrainer:
 
             return score
         
-        except:
+        except Exception as e:
             raise CustomException(e,sys)

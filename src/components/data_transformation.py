@@ -44,8 +44,8 @@ class DataTransformation:
             4. return the column transformer object as ouput.
             """
 
-            numerical_cols = ['writing score', 'reading score']
-            categorical_cols = ["gender", "race/ethnicity", "parental level of education", "lunch","test preparation course"]
+            numerical_cols = ['writing_score', 'reading_score']
+            categorical_cols = ["gender", "race_ethnicity", "parental_level_of_education", "lunch","test_prepration_course"]
 
             ## Creating Numeric Pipeline
             num_pipeline = Pipeline(
@@ -100,7 +100,7 @@ class DataTransformation:
 
             preprocessing_object = self.get_data_transformer_obj()
 
-            target_column_name = "math score"
+            target_column_name = "math_score"
 
             X_train = train_df.drop(columns=[target_column_name],axis=1)
             y_train = train_df[target_column_name]
