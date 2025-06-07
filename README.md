@@ -39,3 +39,6 @@
     ├── requirements.txt
     ├── README.md
     └── .gitignore
+
+## Project link:
+    https://student-perfomance-prediction.onrender.com
