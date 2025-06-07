@@ -15,6 +15,7 @@ import numpy as np
 from dataclasses import dataclass ## dataclass enables us to write python Class with __init__().
 
 from src.components.data_transformation import DataTransformation, DataTransformationConfig
+from src.components.model_trainer import ModelTrainer, ModelTrainerConfig
 @dataclass ## we have to define this to intiate the class.
 
 ## Defining a class DataIngestionConfig where we define the path for the rawdata.csv, traindata.csv, testdata.csv
@@ -64,8 +65,9 @@ if __name__ == "__main__":
     data_transformation = DataTransformation()
     train_arr, test_arr,_ = data_transformation.initiate_data_transformation(train_data, test_data)
             
-
-
+    model_obj = ModelTrainer()
+    score = model_obj.initiate_model_trainer(train_arr, test_arr)
+    print(score)
 
 
 
