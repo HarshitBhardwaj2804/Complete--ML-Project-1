@@ -41,4 +41,4 @@
     └── .gitignore
 
 ## Project link:
-    [link](https://student-perfomance-prediction.onrender.com)
+    [link] (https://student-perfomance-prediction.onrender.com)
